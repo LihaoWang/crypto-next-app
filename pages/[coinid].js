@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
   return { props: { data, marketData } };
 }
 
-function coinid({ data, marketData }) {
+function Coinid({ data, marketData }) {
   const { isAuthenticated, user, Moralis } = useMoralis();
   const [inputValue, setInputValue] = useState(0);
   const [convertedValue, setConvertedValue] = useState(0);
@@ -295,4 +295,4 @@ function coinid({ data, marketData }) {
   );
 }
 
-export default coinid;
+export default Coinid;

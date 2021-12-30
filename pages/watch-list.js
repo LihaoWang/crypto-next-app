@@ -9,7 +9,7 @@ export async function getServerSideProps() {
 
   return { props: { data } };
 }
-function watchList({ data }) {
+function WatchList({ data }) {
   const { isAuthenticated, user, Moralis } = useMoralis();
   const [watchList, setWatchList] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -51,4 +51,4 @@ function watchList({ data }) {
   );
 }
 
-export default watchList;
+export default WatchList;
