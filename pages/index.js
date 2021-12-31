@@ -29,6 +29,9 @@ export default function Home({ data }) {
   }
   return (
     <div className="bg-black pb-10">
+      <Head>
+        <title>Xchange</title>
+      </Head>
       <Hero />
       <GetStarted />
       <div className="max-w-screen-lg m-auto">

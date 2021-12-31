@@ -9,6 +9,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useMoralis } from "react-moralis";
 import Footer from "../components/Footer";
 import PeriodSelector from "../components/PeriodSelector";
+import Head from "next/head";
 export async function getServerSideProps(context) {
   const { coinid } = context.query;
   const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinid}`);
@@ -49,7 +50,7 @@ function Coinid({ data }) {
   }, [period]);
   function handleValueChange(e) {
     setInputValue(e.target.value);
-    setConvertedValue(e.target.value * currencyRate);
+    setConvertedValue((e.target.value * currencyRate).toFixed(2));
   }
   function handleConvertedValueChange(e) {
     setConvertedValue(e.target.value);
@@ -118,6 +119,9 @@ function Coinid({ data }) {
 
   return (
     <div className="bg-black min-h-screen">
+      <Head>
+        <title>{data.name}</title>
+      </Head>
       <div className="max-w-screen-lg m-auto py-10 px-5 text-white">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center">
