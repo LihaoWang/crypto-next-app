@@ -3,7 +3,7 @@ import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from "react-icons/ai";
 
 function Footer() {
   return (
-    <div className="text-white flex flex-col justify-center items-center pt-10">
+    <div className="text-white flex flex-col justify-center items-center pt-16">
       <h1 className="text-2xl font-bold text-neutral-400">Xchange 2.0</h1>
       <div className="flex flex-row gap-5 mt-5 text-neutral-400">
         <a href="#">FAQ</a>

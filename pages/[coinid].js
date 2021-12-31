@@ -4,23 +4,26 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import millify from "millify";
 import { RiArrowLeftRightFill } from "react-icons/ri";
-
+import { useRouter } from "next/router";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useMoralis } from "react-moralis";
 import Footer from "../components/Footer";
+import PeriodSelector from "../components/PeriodSelector";
 export async function getServerSideProps(context) {
   const { coinid } = context.query;
   const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coinid}`);
   const data = await res.json();
-  const market = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${coinid}/market_chart?vs_currency=usd&days=3`
-  );
-  const marketData = await market.json();
+  // const market = await fetch(
+  //   `https://api.coingecko.com/api/v3/coins/${coinid}/market_chart?vs_currency=usd&days=3`
+  // );
+  // const marketData = await market.json();
 
-  return { props: { data, marketData } };
+  return { props: { data } };
 }
 
-function Coinid({ data, marketData }) {
+function Coinid({ data }) {
+  const router = useRouter();
+  const { coinid } = router.query;
   const { isAuthenticated, user, Moralis } = useMoralis();
   const [inputValue, setInputValue] = useState(0);
   const [convertedValue, setConvertedValue] = useState(0);
@@ -29,6 +32,8 @@ function Coinid({ data, marketData }) {
   );
   const [rise, setRise] = useState(data.market_data.price_change_24h > 0);
   const [coinExists, setCoinExists] = useState(false);
+  const [period, setPeriod] = useState(3);
+  const [chartData, setChartData] = useState();
   const WatchList = Moralis.Object.extend("WatchList");
 
   useEffect(() => {
@@ -38,6 +43,10 @@ function Coinid({ data, marketData }) {
       console.log("not logged in");
     }
   }, [isAuthenticated]);
+
+  useEffect(() => {
+    getChartData();
+  }, [period]);
   function handleValueChange(e) {
     setInputValue(e.target.value);
     setConvertedValue(e.target.value * currencyRate);
@@ -99,6 +108,13 @@ function Coinid({ data, marketData }) {
       setCoinExists(false);
     });
   }
+  async function getChartData() {
+    const res = await fetch(
+      `https://api.coingecko.com/api/v3/coins/${coinid}/market_chart?vs_currency=usd&days=${period}`
+    );
+    const data = await res.json();
+    setChartData(data);
+  }
 
   return (
     <div className="bg-black min-h-screen">
@@ -147,29 +163,58 @@ function Coinid({ data, marketData }) {
         </div>
         <div className="flex flex-row gap-5">
           <div className="w-2/3">
-            <Line
-              className="mt-10 w-2/3 flex-initial"
-              data={{
-                labels: [...Array(25).keys()],
-                datasets: [
-                  {
-                    label: "Price",
-                    data: marketData.prices.map((price) => price[1]),
-                    tension: 0.5,
-                    borderColor: `${rise ? "#16a34a" : "#dc2626"}`,
+            <div className="flex flex-row gap-5">
+              <PeriodSelector
+                value={1}
+                period={period}
+                onChange={() => setPeriod(1)}
+              />
+              <PeriodSelector
+                value={3}
+                period={period}
+                onChange={() => setPeriod(3)}
+              />
+              <PeriodSelector
+                value={7}
+                period={period}
+                onChange={() => setPeriod(7)}
+              />
+              <PeriodSelector
+                value={30}
+                period={period}
+                onChange={() => setPeriod(30)}
+              />
+              <PeriodSelector
+                value={90}
+                period={period}
+                onChange={() => setPeriod(90)}
+              />
+            </div>
+            {chartData && (
+              <Line
+                className="mt-10 w-2/3 flex-initial"
+                data={{
+                  labels: [...Array(50).keys()],
+                  datasets: [
+                    {
+                      label: "Price",
+                      data: chartData.prices.map((price) => price[1]),
+                      tension: 0.5,
+                      borderColor: `${rise ? "#16a34a" : "#dc2626"}`,
+                    },
+                  ],
+                }}
+                options={{
+                  scales: {
+                    x: {
+                      display: false,
+                    },
                   },
-                ],
-              }}
-              options={{
-                scales: {
-                  x: {
-                    display: false,
-                  },
-                },
-              }}
-            />
+                }}
+              />
+            )}
           </div>
-          <div className="w-1/3 px-8 py-3 bg-neutral-800 rounded-xl">
+          <div className="w-1/3 px-8 py-3 bg-neutral-800 rounded-xl flex flex-col justify-center">
             <h1 className="text-2xl text-neutral-300 my-3 font-bold">
               Changes
             </h1>
