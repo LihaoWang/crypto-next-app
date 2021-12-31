@@ -11,7 +11,7 @@ function Hero() {
           <h1 className="font-bold text-3xl text-transparent bg-clip-text bg-gradient-to-br from-gray-200 to-gray-600">
             Xchange 2.0
           </h1>
-          <h1 className="font-extrabold text-7xl md:text-8xl text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-purple-600">
+          <h1 className="font-extrabold text-8xl text-transparent bg-clip-text bg-gradient-to-br from-pink-400 to-purple-600">
             Web3
           </h1>
           <h2 className=" font-bold text-4xl md:text-5xl mt-3">

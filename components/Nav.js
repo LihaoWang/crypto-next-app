@@ -39,7 +39,7 @@ function Nav() {
         ) : (
           <button
             onClick={() => authenticate()}
-            className="p-3 px-4  rounded-md mr-3 flex flex-row items-center gap-3  "
+            className="py-3 md:px-4  rounded-md  flex flex-row items-center gap-3  "
           >
             <img className="w-6" src="/metamask.svg" />
             <h1>Login</h1>

@@ -53,7 +53,7 @@ function Coinid({ data }) {
   }
   function handleConvertedValueChange(e) {
     setConvertedValue(e.target.value);
-    setInputValue(Math.floor(e.target.value / currencyRate));
+    setInputValue((e.target.value / currencyRate).toFixed(2));
   }
   function handleCurrencyChange(e) {
     setCurrencyRate(data.market_data.current_price[e.target.value]);
@@ -129,7 +129,7 @@ function Coinid({ data }) {
           </div>
         </div>
         <div className="flex flex-row mt-6 items-end justify-between mb-5">
-          <div className="flex flex-row items-end">
+          <div className="flex flex-row items-end flex-wrap">
             <h1 className="text-5xl">${data.market_data.current_price.usd}</h1>
 
             <h1
@@ -137,13 +137,13 @@ function Coinid({ data }) {
                 rise ? "text-green-600" : "text-red-600"
               }  `}
             >
-              {data.market_data.price_change_percentage_24h}%
+              {data.market_data.price_change_percentage_24h.toFixed(3)}%
             </h1>
           </div>
           <div>
             {isAuthenticated && !coinExists && (
               <button
-                className="text-white text-lg p-3 px-4 bg-slate-500 hover:bg-slate-600 rounded-lg mt-5 flex flex-row gap-2 items-center justify-center"
+                className="text-white text-lg p-3 px-4 bg-neutral-800 hover:bg-neutral-600 rounded-lg mt-5 flex flex-row gap-2 items-center justify-center"
                 onClick={addToWatch}
               >
                 <AiOutlineStar />
@@ -152,7 +152,7 @@ function Coinid({ data }) {
             )}
             {isAuthenticated && coinExists && (
               <button
-                className="text-white text-lg p-3 px-4 bg-slate-500 hover:bg-slate-600 rounded-lg mt-5 flex flex-row gap-2 items-center justify-center"
+                className="text-white text-lg p-3 px-4 bg-neutral-800 hover:bg-neutral-600 rounded-lg mt-5 flex flex-row gap-2 items-center justify-center"
                 onClick={removeFromWatch}
               >
                 <AiFillStar />
@@ -229,25 +229,25 @@ function Coinid({ data }) {
             <div className="flex flex-col ">
               <div className="flex flex-row justify-between my-3 border-t pt-3">
                 <h1 className="text-neutral-300">1 Day</h1>
-                <h1 className="text-2xl">
+                <h1 className="text-xl md:text-2xl">
                   {data.market_data.price_change_percentage_24h}%
                 </h1>
               </div>
               <div className="flex flex-row justify-between my-3 border-t pt-3">
                 <h1 className="text-neutral-300">7 Days</h1>
-                <h1 className="text-2xl">
+                <h1 className="text-xl md:text-2xl">
                   {data.market_data.price_change_percentage_7d}%
                 </h1>
               </div>
               <div className="flex flex-row justify-between my-3 border-t pt-3">
                 <h1 className="text-neutral-300">1 Month</h1>
-                <h1 className="text-2xl">
+                <h1 className="text-xl md:text-2xl">
                   {data.market_data.price_change_percentage_30d}%
                 </h1>
               </div>
               <div className="flex flex-row justify-between my-3 border-t pt-3">
                 <h1 className="text-neutral-300">1 Year</h1>
-                <h1 className="text-2xl">
+                <h1 className="text-xl md:text-2xl">
                   {data.market_data.price_change_percentage_1y}%
                 </h1>
               </div>
@@ -262,34 +262,38 @@ function Coinid({ data }) {
           <div className="grid grid-col-1 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">24h High</h1>
-              <h1 className="text-3xl">${data.market_data.high_24h.usd}</h1>
+              <h1 className="text-2xl md:text-3xl">
+                ${data.market_data.high_24h.usd}
+              </h1>
             </div>
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">24h Low</h1>
-              <h1 className="text-3xl">${data.market_data.low_24h.usd}</h1>
+              <h1 className="text-2xl md:text-3xl">
+                ${data.market_data.low_24h.usd}
+              </h1>
             </div>
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">Market Cap</h1>
-              <h1 className="text-3xl">
+              <h1 className="text-2xl md:text-3xl">
                 ${millify(data.market_data.market_cap.usd)}
               </h1>
             </div>
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">Market Cap Rank</h1>
-              <h1 className="text-3xl">
+              <h1 className="text-2xl md:text-3xl">
                 #{millify(data.market_data.market_cap_rank)}
               </h1>
             </div>
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">Total Volume</h1>
-              <h1 className="text-3xl">
+              <h1 className="text-2xl md:text-3xl">
                 ${millify(data.market_data.total_volume.usd)}
               </h1>
             </div>
             {data.market_data.fully_diluted_valuation.usd && (
               <div className="flex flex-col ">
                 <h1 className="text-neutral-300">Fully Diluted Valuation</h1>
-                <h1 className="text-3xl">
+                <h1 className="text-2xl md:text-3xl">
                   ${millify(data.market_data.fully_diluted_valuation.usd)}
                 </h1>
               </div>
@@ -298,7 +302,7 @@ function Coinid({ data }) {
             {data.market_data.total_supply && (
               <div className="flex flex-col ">
                 <h1 className="text-neutral-300">Total Supply</h1>
-                <h1 className="text-3xl">
+                <h1 className="text-2xl md:text-3xl">
                   ${millify(data.market_data.total_supply)}
                 </h1>
               </div>
@@ -306,7 +310,7 @@ function Coinid({ data }) {
 
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">Cirulating Supply</h1>
-              <h1 className="text-3xl">
+              <h1 className="text-2xl md:text-3xl">
                 ${millify(data.market_data.circulating_supply)}
               </h1>
             </div>
@@ -318,7 +322,7 @@ function Coinid({ data }) {
             Currency Converter
           </h1>
           <form className="flex flex-col md:flex-row justify-center items-center gap-5">
-            <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg m-3">
+            <div className="flex flex-row border-neutral-500 border-2 justify-center items-center p-5 text-xl md:text-2xl rounded-lg mx-5">
               <h1>{data.symbol}</h1>
               <input
                 className="focus:outline-none p-3 bg-neutral-800 w-full"
@@ -327,13 +331,19 @@ function Coinid({ data }) {
               />
             </div>
             <RiArrowLeftRightFill className="text-2xl font-bold mx-5" />
-            <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg m-3">
+            <div className="flex flex-row border-neutral-500 border-2 justify-center items-center p-5 text-xl md:text-2xl rounded-lg mx-5">
               <select
                 className="bg-neutral-800"
                 onChange={handleCurrencyChange}
               >
                 <option value="usd">usd</option>
                 <option value="cny">cny</option>
+                <option value="aud">aud</option>
+                <option value="cad">cad</option>
+                <option value="eur">eur</option>
+                <option value="hkd">hkd</option>
+                <option value="rub">rub</option>
+                <option value="brl">brl</option>
               </select>
 
               <input

@@ -8,7 +8,7 @@ function PriceCard({ coinData }) {
       <div className="basis-1/3  grow-0 shrink-0">
         <div className="flex flex-row items-center ">
           <img
-            className="mr-2 md:mr-5 w-8"
+            className="mr-2 md:mr-5 w-6 md:w-8"
             src={coinData.image.small}
             alt={coinData.id}
           />
@@ -25,11 +25,11 @@ function PriceCard({ coinData }) {
       <div className="basis-1/3  grow-0 shrink-0 text-right">
         {coinData.market_data.price_change_24h > 0 ? (
           <h1 className="md:text-2xl text-green-600 ">
-            {coinData.market_data.price_change_percentage_24h}%
+            {coinData.market_data.price_change_percentage_24h.toFixed(3)}%
           </h1>
         ) : (
           <h1 className="md:text-2xl text-red-600 ">
-            {coinData.market_data.price_change_percentage_24h}%
+            {coinData.market_data.price_change_percentage_24h.toFixed(3)}%
           </h1>
         )}
       </div>

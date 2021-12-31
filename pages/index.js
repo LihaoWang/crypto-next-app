@@ -40,7 +40,7 @@ export default function Home({ data }) {
         <div className="flex flex-row justify-center">
           <button
             onClick={loadMore}
-            className="text-white mt-10 md:text-lg font-bold py-3 px-4 bg-neutral-600 rounded-lg"
+            className="text-white mt-10 md:text-lg font-bold py-3 px-4 bg-gradient-to-br from-neutral-600 to-neutral-800 rounded-lg"
           >
             {currData.length < data.length ? "Load more" : "Show less"}
           </button>

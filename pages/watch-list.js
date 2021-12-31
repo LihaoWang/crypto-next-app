@@ -38,12 +38,10 @@ function WatchList({ data }) {
     <div className="bg-black  h-screen">
       <div className="max-w-screen-lg m-auto text-white pt-10">
         <h1 className="text-4xl text-center font-bold mb-8">My Watchlist</h1>
+        {filteredData && <MarketHeader />}
         {filteredData &&
           filteredData.map((coin) => (
-            <>
-              <MarketHeader />
-              <PriceCard coinData={coin} key={coin.id} />
-            </>
+            <PriceCard coinData={coin} key={coin.id} />
           ))}
         {!isAuthenticated && (
           <h1 className="text-center text-2xl font-bold text-purple-400">
