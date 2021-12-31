@@ -118,7 +118,7 @@ function Coinid({ data }) {
 
   return (
     <div className="bg-black min-h-screen">
-      <div className="max-w-screen-lg m-auto py-10 text-white">
+      <div className="max-w-screen-lg m-auto py-10 px-5 md:py-0 text-white">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center">
             <img className="w-16" src={data.image.large} />
@@ -161,8 +161,8 @@ function Coinid({ data }) {
             )}
           </div>
         </div>
-        <div className="flex flex-row gap-5">
-          <div className="w-2/3">
+        <div className="flex flex-col md:flex-row gap-5">
+          <div className="md:w-2/3">
             <div className="flex flex-row gap-5">
               <PeriodSelector
                 value={1}
@@ -214,7 +214,7 @@ function Coinid({ data }) {
               />
             )}
           </div>
-          <div className="w-1/3 px-8 py-3 bg-neutral-800 rounded-xl flex flex-col justify-center">
+          <div className="md:w-1/3 px-8 py-3 bg-neutral-800 rounded-xl flex flex-col justify-center">
             <h1 className="text-2xl text-neutral-300 my-3 font-bold">
               Changes
             </h1>
@@ -248,8 +248,10 @@ function Coinid({ data }) {
         </div>
 
         <div className="mt-10 bg-neutral-800 p-5 rounded-xl">
-          <h1 className="text-2xl text-neutral-300 mb-3 font-bold">Stats</h1>
-          <div className="grid grid-cols-4 gap-4">
+          <h1 className="text-2xl text-neutral-300 mb-3 font-bold text-center">
+            Stats
+          </h1>
+          <div className="grid grid-col-1 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col ">
               <h1 className="text-neutral-300">24h High</h1>
               <h1 className="text-3xl">${data.market_data.high_24h.usd}</h1>
@@ -304,14 +306,14 @@ function Coinid({ data }) {
         </div>
 
         <div className="flex flex-col justify-center items-center py-8 bg-neutral-800 mt-10 rounded-xl ">
-          <h1 className="text-2xl text-neutral-300 font-bold mb-5">
+          <h1 className="text-2xl text-neutral-300 font-bold mb-8">
             Currency Converter
           </h1>
-          <form className="flex flex-row justify-center items-center">
+          <form className="flex flex-col md:flex-row justify-center items-center gap-5">
             <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg">
               <h1>{data.symbol}</h1>
               <input
-                className="focus:outline-none  p-3 bg-neutral-800"
+                className="focus:outline-none p-3 bg-neutral-800"
                 onChange={handleValueChange}
                 value={inputValue}
               />

@@ -3,6 +3,7 @@ import PriceCard from "../components/PriceCard";
 import Hero from "../components/Hero";
 import MarketHeader from "../components/MarketHeader";
 import Footer from "../components/Footer";
+import GetStarted from "../components/GetStarted";
 import { useState, useRef } from "react";
 // This gets called on every request
 export async function getServerSideProps() {
@@ -29,8 +30,9 @@ export default function Home({ data }) {
   return (
     <div className="bg-black pb-10">
       <Hero />
+      <GetStarted />
       <div className="max-w-screen-lg m-auto">
-        <div ref={myRef} className="rounded-xl bg-neutral-800">
+        <div ref={myRef} className="rounded-xl bg-neutral-800 mx-5 md:mx-0">
           <MarketHeader />
           {currData &&
             currData.map((coin) => <PriceCard coinData={coin} key={coin.id} />)}
@@ -38,7 +40,7 @@ export default function Home({ data }) {
         <div className="flex flex-row justify-center">
           <button
             onClick={loadMore}
-            className="text-white my-8 text-xl font-bold py-3 px-4 bg-neutral-800 rounded-lg mx-auto"
+            className="text-white mt-10 md:text-lg font-bold py-3 px-4 bg-neutral-600 rounded-lg"
           >
             {currData.length < data.length ? "Load more" : "Show less"}
           </button>
