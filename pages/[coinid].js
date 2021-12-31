@@ -118,7 +118,7 @@ function Coinid({ data }) {
 
   return (
     <div className="bg-black min-h-screen">
-      <div className="max-w-screen-lg m-auto py-10 px-5 md:py-0 text-white">
+      <div className="max-w-screen-lg m-auto py-10 px-5 text-white">
         <div className="flex flex-row justify-between">
           <div className="flex flex-row items-center">
             <img className="w-16" src={data.image.large} />
@@ -207,6 +207,14 @@ function Coinid({ data }) {
                 options={{
                   scales: {
                     x: {
+                      display: false,
+                    },
+                    y: {
+                      display: false,
+                    },
+                  },
+                  plugins: {
+                    legend: {
                       display: false,
                     },
                   },
@@ -310,16 +318,16 @@ function Coinid({ data }) {
             Currency Converter
           </h1>
           <form className="flex flex-col md:flex-row justify-center items-center gap-5">
-            <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg">
+            <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg m-3">
               <h1>{data.symbol}</h1>
               <input
-                className="focus:outline-none p-3 bg-neutral-800"
+                className="focus:outline-none p-3 bg-neutral-800 w-full"
                 onChange={handleValueChange}
                 value={inputValue}
               />
             </div>
             <RiArrowLeftRightFill className="text-2xl font-bold mx-5" />
-            <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg">
+            <div className="flex flex-row border-2 justify-center items-center p-5 text-2xl rounded-lg m-3">
               <select
                 className="bg-neutral-800"
                 onChange={handleCurrencyChange}
@@ -329,7 +337,7 @@ function Coinid({ data }) {
               </select>
 
               <input
-                className="focus:outline-none p-3 bg-neutral-800"
+                className="focus:outline-none p-3 bg-neutral-800 w-full"
                 onChange={handleConvertedValueChange}
                 value={convertedValue}
               />
