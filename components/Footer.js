@@ -11,13 +11,22 @@ function Footer() {
         <a href="#">Terms of Service</a>
       </div>
       <div className="text-2xl flex flex-row gap-5 text-neutral-400 mt-5">
-        <a className="  bg-neutral-800 p-2 rounded-full" href="#">
+        <a
+          className="  bg-neutral-800 p-2 rounded-full"
+          href="https://github.com/LihaoWang"
+        >
           <AiFillGithub />
         </a>
-        <a className=" bg-neutral-800 p-2 rounded-full " href="#">
+        <a
+          className=" bg-neutral-800 p-2 rounded-full "
+          href="https://www.linkedin.com/in/lihaowang98"
+        >
           <AiFillLinkedin />
         </a>
-        <a className=" bg-neutral-800 p-2 rounded-full " href="#">
+        <a
+          className=" bg-neutral-800 p-2 rounded-full "
+          href="https://www.instagram.com/llleowang/"
+        >
           <AiFillInstagram />
         </a>
       </div>
