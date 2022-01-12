@@ -7,7 +7,7 @@ function GetStarted() {
     <div id="cta" className="text-white max-w-screen-lg mx-5 md:m-auto pb-5">
       <h1 className="text-3xl md:text-4xl font-bold">Get started</h1>
       <h1 className="text-3xl md:text-4xl font-bold">in a few minutes</h1>
-      <div className="flex flex-col md:flex-row justify-between  my-8 gap-5">
+      <div className="flex flex-col md:flex-row justify-between my-8 gap-5">
         <div className="flex-1 flex flex-col bg-neutral-800 justify-center items-center px-8 py-5 rounded-xl gap-3 text-center ">
           <IoIosWallet className="text-2xl md:text-4xl" />
           <h1 className="md:text-xl text-lg">Connect a wallet</h1>
