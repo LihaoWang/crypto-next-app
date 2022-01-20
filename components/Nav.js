@@ -1,12 +1,18 @@
 import { useMoralis } from "react-moralis";
 import Link from "next/link";
 import { AiFillEye } from "react-icons/ai";
-
 import { IoLogOut } from "react-icons/io5";
 
 function Nav() {
   const { authenticate, isAuthenticated, user, logout } = useMoralis();
 
+  const handleLogin = async () => {
+    if (typeof window.ethereum === "undefined") {
+      alert("MetaMask is required to use the login feature");
+    } else {
+      await authenticate();
+    }
+  };
   return (
     <div className="flex flex-row px-6 py-3 justify-between items-center bg-black text-white">
       <h1 className="text-2xl font-bold">
@@ -38,7 +44,7 @@ function Nav() {
           </div>
         ) : (
           <button
-            onClick={() => authenticate()}
+            onClick={handleLogin}
             className="py-3 md:px-4  rounded-md  flex flex-row items-center gap-3  "
           >
             <img className="w-6" src="/metamask.svg" />
